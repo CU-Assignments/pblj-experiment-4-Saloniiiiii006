@@ -1,0 +1,72 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+class Employee {
+    int id;
+    String name;
+    double salary;
+
+    // Constructor to initialize an employee
+    public Employee(int id, String name, double salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    // Method to display employee details
+    public void displayEmployee() {
+        System.out.println("ID: " + id + ", Name: " + name + ", Salary: " + salary);
+    }
+}
+
+public class EmployeeManagement {
+
+    static ArrayList<Employee> employees = new ArrayList<>();
+    static Scanner scanner = new Scanner(System.in);
+
+    // Method to add an employee
+    public static void addEmployee() {
+        System.out.print("Enter Employee ID: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); // Consume newline
+        System.out.print("Enter Employee Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter Employee Salary: ");
+        double salary = scanner.nextDouble();
+
+        Employee newEmployee = new Employee(id, name, salary);
+        employees.add(newEmployee);
+        System.out.println("Employee added successfully!");
+    }
+
+    // Method to update employee details
+    public static void updateEmployee() {
+        System.out.print("Enter Employee ID to update: ");
+        int id = scanner.nextInt();
+        boolean found = false;
+
+        for (Employee emp : employees) {
+            if (emp.id == id) {
+                found = true;
+                scanner.nextLine(); // Consume newline
+                System.out.print("Enter new Name: ");
+                emp.name = scanner.nextLine();
+                System.out.print("Enter new Salary: ");
+                emp.salary = scanner.nextDouble();
+                System.out.println("Employee updated successfully!");
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Employee with ID " + id + " not found.");
+        }
+    }
+
+    // Method to remove an employee
+    public static void removeEmployee() {
+        System.out.print("Enter Employee ID to remove: ");
+        int id = scanner.nextInt();
+        boolean found = false;
+
+        for (int i = 0; i < employees.size(); 
