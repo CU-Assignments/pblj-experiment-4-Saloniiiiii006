@@ -1,0 +1,57 @@
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Scanner;
+
+
+class Card {
+    String symbol; // Suit of the card (Hearts, Diamonds, Clubs, Spades)
+    String rank;   // Rank of the card (e.g., 2, 3, Ace, King)
+
+   
+    public Card(String symbol, String rank) {
+        this.symbol = symbol;
+        this.rank = rank;
+    }
+
+    public void displayCard() {
+        System.out.println(rank + " of " + symbol);
+    }
+}
+
+public class CardCollection {
+    public static void main(String[] args) {
+        // Create a collection of cards (using ArrayList)
+        Collection<Card> cardCollection = new ArrayList<>();
+
+        
+        cardCollection.add(new Card("Hearts", "2"));
+        cardCollection.add(new Card("Hearts", "Ace"));
+        cardCollection.add(new Card("Clubs", "King"));
+        cardCollection.add(new Card("Spades", "10"));
+        cardCollection.add(new Card("Diamonds", "Queen"));
+        cardCollection.add(new Card("Hearts", "7"));
+        cardCollection.add(new Card("Spades", "Ace"));
+
+        
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the symbol (Hearts, Diamonds, Clubs, Spades) to find all cards: ");
+        String symbol = scanner.nextLine();
+
+        
+        System.out.println("\nCards with the symbol " + symbol + ":");
+        boolean found = false;
+
+        for (Card card : cardCollection) {
+            if (card.symbol.equalsIgnoreCase(symbol)) {
+                card.displayCard();
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No cards found for the symbol " + symbol + ".");
+        }
+
+        scanner.close();
+    }
+}
